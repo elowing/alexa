@@ -6,6 +6,12 @@ before do
   content_type 'application/json'
 end
 
+set :port, 8445
+
+get '/' do
+  "These will be dad jokes. Nothing to see here yet, move along."
+end
+
 post '/' do
   request_json = JSON.parse request.body.read.to_s
   request = AlexaRubykit.build_request request_json
