@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'alexa_rubykit'
+require_relative '../lib/dadjokes'
 
 before do
   content_type 'application/json'
@@ -23,6 +24,9 @@ post '/' do
   end
 
   if (request.type == 'INTENT_REQUEST')
+    client = DadJokes.new
+    client.user_timeline("baddadjokes")
+    require 'pry'; binding.pry
     response.add_speech("I received an intent named #{request.name}?")
     response.add_hash_card( { title: 'Ruby Intent', subtitle: "Intent #{request.name}" } )
   end

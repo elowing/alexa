@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'alexa_rubykit'
-gem 'sinatra'
-gem 'json'
+gem 'alexa_rubykit', require: false
+gem 'sinatra', require: false
+gem 'json', require: false
+gem 'twitter', require: false
