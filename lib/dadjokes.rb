@@ -29,18 +29,6 @@ class DadJokes
   end
 
   def format(joke)
-    joke.drop_hashtags.remove_mentions.remove_whitespace
-  end
-
-  def drop_hashtags(joke)
-    joke.split('#').first
-  end
-
-  def remove_mentions(joke)
-    joke.gsub(/@\w+\b/,'')
-  end
-
-  def remove_whitespace(joke)
-    joke.gsub(/\s+/, " ").strip
+    joke.split('#').first.gsub(/@\w+\b/,'').gsub(/\s+/, " ").strip
   end
 end
