@@ -1,7 +1,10 @@
 require 'json'
+require 'dotenv'
 require 'sinatra'
 require 'alexa_rubykit'
 require_relative '../lib/dadjokes'
+
+Dotenv.load
 
 before do
   content_type 'application/json'
