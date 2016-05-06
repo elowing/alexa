@@ -1,5 +1,5 @@
-require 'sinatra'
 require 'json'
+require 'sinatra'
 require 'alexa_rubykit'
 require_relative '../lib/dadjokes'
 
@@ -10,7 +10,7 @@ end
 set :port, 8445
 
 get '/' do
-  "These will be dad jokes. Nothing to see here yet, move along."
+  "Dad jokes coming. Nothing to see here yet, move along."
 end
 
 post '/' do
@@ -20,15 +20,13 @@ post '/' do
   response = AlexaRubykit::Response.new
   if (request.type == 'LAUNCH_REQUEST')
     response.add_speech('Ruby running ready!')
-    response.add_hash_card( { title: 'Ruby Run', subtitle: 'Ruby Running Ready!' } )
+    response.add_hash_card( { title: 'Ruby Launch', subtitle: 'Ruby Launching!' } )
   end
 
   if (request.type == 'INTENT_REQUEST')
-    client = DadJokes.new
-    client.user_timeline("baddadjokes")
-    require 'pry'; binding.pry
-    response.add_speech("I received an intent named #{request.name}?")
-    response.add_hash_card( { title: 'Ruby Intent', subtitle: "Intent #{request.name}" } )
+    joke = DadJokes.new.sample
+    response.add_speech joke
+    response.add_hash_card( { title: 'Ruby Intent', subtitle: joke } )
   end
 
   if (request.type =='SESSION_ENDED_REQUEST')
