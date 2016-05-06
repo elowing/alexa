@@ -29,7 +29,7 @@ post '/' do
   if (request.type == 'INTENT_REQUEST')
     joke = DadJokes.new.sample
     response.add_speech joke
-    response.add_hash_card( { title: 'Ruby Intent', subtitle: joke } )
+    response.add_hash_card( { title: 'Ruby Intent', content: joke } )
   end
 
   if (request.type =='SESSION_ENDED_REQUEST')
